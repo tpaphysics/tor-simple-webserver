@@ -1,0 +1,3 @@
+HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServicePort 80 proxy:80
+HiddenServicePort 443 proxy:443

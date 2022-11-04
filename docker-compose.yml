@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+  site:
+    build: "./site"
+    image: site
+    container_name: site
+    networks:
+      - tor-networks
+  proxy:
+    build: "./proxy"
+    image: proxy  
+    container_name: proxy 
+    links:
+      - site
+    networks: 
+     - tor-networks
+ #   volumes:
+ #    - torrc:/etc/tor/
+ #    - tor-data:/var/lib/tor/
+  tor:
+    build: "./tor"
+    image: tor
+    container_name: tor
+    links:
+      - proxy
+    networks: 
+      - tor-networks    
+networks:
+  tor-networks:
+    driver: bridge
+#volumes:
+#  torrc:    
+#  tor-data:
+  
